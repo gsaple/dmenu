@@ -30,6 +30,7 @@ stest: stest.o
 
 clean:
 	rm -f dmenu stest $(OBJ) dmenu-$(VERSION).tar.gz
+	rm -f config.h
 
 dist: clean
 	mkdir -p dmenu-$(VERSION)
@@ -41,23 +42,23 @@ dist: clean
 	rm -rf dmenu-$(VERSION)
 
 install: all
-	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	cp -f dmenu dmenu_path dmenu_run stest $(DESTDIR)$(PREFIX)/bin
-	chmod 755 $(DESTDIR)$(PREFIX)/bin/dmenu
-	chmod 755 $(DESTDIR)$(PREFIX)/bin/dmenu_path
-	chmod 755 $(DESTDIR)$(PREFIX)/bin/dmenu_run
-	chmod 755 $(DESTDIR)$(PREFIX)/bin/stest
-	mkdir -p $(DESTDIR)$(MANPREFIX)/man1
-	sed "s/VERSION/$(VERSION)/g" < dmenu.1 > $(DESTDIR)$(MANPREFIX)/man1/dmenu.1
-	sed "s/VERSION/$(VERSION)/g" < stest.1 > $(DESTDIR)$(MANPREFIX)/man1/stest.1
-	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/dmenu.1
-	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/stest.1
+	mkdir -p $(DESTDIR)$(PREFIX)
+	cp -f dmenu dmenu_path dmenu_run stest $(DESTDIR)$(PREFIX)
+	chmod 755 $(DESTDIR)$(PREFIX)/dmenu
+	chmod 755 $(DESTDIR)$(PREFIX)/dmenu_path
+	chmod 755 $(DESTDIR)$(PREFIX)/dmenu_run
+	chmod 755 $(DESTDIR)$(PREFIX)/stest
+	#mkdir -p $(DESTDIR)$(MANPREFIX)/man1
+	#sed "s/VERSION/$(VERSION)/g" < dmenu.1 > $(DESTDIR)$(MANPREFIX)/man1/dmenu.1
+	#sed "s/VERSION/$(VERSION)/g" < stest.1 > $(DESTDIR)$(MANPREFIX)/man1/stest.1
+	#chmod 644 $(DESTDIR)$(MANPREFIX)/man1/dmenu.1
+	#chmod 644 $(DESTDIR)$(MANPREFIX)/man1/stest.1
 
 uninstall:
-	rm -f $(DESTDIR)$(PREFIX)/bin/dmenu\
-		$(DESTDIR)$(PREFIX)/bin/dmenu_path\
-		$(DESTDIR)$(PREFIX)/bin/dmenu_run\
-		$(DESTDIR)$(PREFIX)/bin/stest\
+	rm -f $(DESTDIR)$(PREFIX)/dmenu\
+		$(DESTDIR)$(PREFIX)/dmenu_path\
+		$(DESTDIR)$(PREFIX)/dmenu_run\
+		$(DESTDIR)$(PREFIX)/stest\
 		$(DESTDIR)$(MANPREFIX)/man1/dmenu.1\
 		$(DESTDIR)$(MANPREFIX)/man1/stest.1
 
